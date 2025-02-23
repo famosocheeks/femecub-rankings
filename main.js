@@ -1,1 +1,3 @@
-// Add JS here
+function redirect() {
+    window.location.href = '/rankings/index.html'
+}
