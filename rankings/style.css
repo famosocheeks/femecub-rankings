@@ -2,70 +2,60 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+/* Contenedor principal */
 .contenedor-principal {
     max-width: 1200px;
-    /* Ajusta el ancho máximo del contenido */
-    margin: 0 auto;
-    /* Centra el contenido horizontalmente */
+    margin: 20px auto;
     padding: 0 20px;
-    /* Espaciado interno en los lados */
 }
 
-/* Configuración para pantallas más pequeñas */
-@media (max-width: 768px) {
-    .contenedor-principal {
-        padding: 0 10px;
-        /* Reduce el espaciado en dispositivos móviles */
-    }
+.dtr-details {
+    width: 100%;
 }
 
-/* Contenedor principal */
-.categorias-container {
-    margin: 20px 0;
-}
-
-.categorias-container h3 {
+/* Título */
+h1 {
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    /* Extra Bold */
     color: #C2282D;
-    /* Color principal */
-    margin-bottom: 10px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Contenedor de los botones */
-.categorias-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
-    /* Ajusta columnas automáticamente */
-    gap: 10px;
-    /* Espaciado entre botones */
+/* Selector de categorías */
+.categorias-container {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
 }
 
-/* Botón de categoría */
 .categoria-btn {
     background-color: #FDEDEE;
-    /* Fondo claro derivado del color principal */
-    border: none;
+    /* Fondo claro derivado del principal */
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: transform ease-in-out .2s, background-color ease-in-out .2s;
+    border: none;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .categoria-btn:hover {
     background-color: #C2282D;
-    color: white;
     /* Fondo al pasar el mouse */
+    transform: scale(1.1);
 }
 
 .categoria-btn img {
-    width: 30px;
+    width: 40px;
     /* Tamaño del ícono */
     height: auto;
 }
 
-/* Fuente para los encabezados */
+/* Tabla estilizada */
 table.dataTable thead th {
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
@@ -74,9 +64,27 @@ table.dataTable thead th {
     /* Color principal */
     color: white;
     /* Texto blanco */
+    text-transform: uppercase;
+    /* Texto en mayúsculas */
 }
 
-/* Fuente para el contenido */
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #FDEDEE;
+    /* Fondo claro derivado del principal */
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: white;
+    /* Fondo blanco */
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #F8B4B6;
+    /* Hover en filas */
+    color: black;
+    /* Texto negro */
+}
+
 table.dataTable tbody td {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -85,25 +93,7 @@ table.dataTable tbody td {
     /* Texto negro */
 }
 
-/* Filas alternadas */
-table.dataTable tbody tr:nth-child(odd) {
-    background-color: #FDEDEE;
-    /* Color claro derivado del principal */
-}
-
-table.dataTable tbody tr:nth-child(even) {
-    background-color: white;
-    /* Fondo blanco */
-}
-
-/* Hover en filas del cuerpo de la tabla */
-table.dataTable tbody tr:hover {
-    background-color: #F8B4B6;
-    /* Hover derivado del principal */
-    color: black;
-}
-
-/* Botones de paginación normales */
+/* Botones de paginación */
 .dataTables_wrapper .dataTables_paginate .paginate_button {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
@@ -111,51 +101,62 @@ table.dataTable tbody tr:hover {
     background-color: #036738;
     /* Color secundario */
     color: white !important;
-    /* Texto blanco */
+    border-radius: 4px;
     border: none;
-    margin: 0 2px;
+    margin-right: 5px;
 }
 
-/* Botón de paginación activo */
-.dataTables_wrapper .dataTables_paginate .paginate_button.current {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    /* Extra Bold */
-    background-color: #C2282D;
-    /* Color principal */
-    color: white !important;
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .selected-button {
+    background-color: #C2282D !important;
+    background: #C2282D;
+    /* Color principal para botón activo */
+    color: white;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-    color: white !important;
-    background-color: #036738;
-    background: #036738;
-}
-
-/* Hover en botones de paginación */
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background: #036738;
-    /* Color secundario (hover) */
-    background-color: #036738;
-    /* Color secundario (hover) */
-    color: white !important;
+    background-color: #C2282D !important;
+    background: #C2282D;
+    color: white;
 }
 
-/* Fuente para el cuadro de búsqueda y selector de longitud */
+/* Cuadro de búsqueda y selector de registros */
 .dataTables_wrapper .dataTables_filter input,
 .dataTables_wrapper .dataTables_length select {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
-    /* Regular */
-    border: 1px solid #C2282D;
     border-radius: 4px;
     padding: 5px;
-    background-color: white;
+    border: 1px solid #C2282D;
+}
+
+table.dataTable tbody tr.shown td.details-control {
+    background-color: #FDEDEE;
+    /* Fondo claro derivado del color principal */
+}
+
+/* Contenedor del contenido desplegable */
+.dataTables_wrapper .child-row {
+    text-align: center;
+    /* Centra el contenido */
+    width: 100%;
+    /* Ocupa todo el ancho disponible */
+    padding: 10px;
+    /* Espaciado interno */
+    background-color: #FDEDEE;
+    /* Fondo claro derivado del color principal */
+    border-radius: 8px;
+    /* Bordes redondeados */
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra ligera */
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
     color: black;
 }
 
-.dataTables_wrapper .dataTables_filter input:hover,
-.dataTables_wrapper .dataTables_length select:hover {
-    border-color: #036738;
-    /* Hover con el color secundario */
+/* Ajuste para dispositivos móviles */
+@media (max-width: 768px) {
+    .dataTables_wrapper .child-row {
+        padding: 8px;
+        font-size: 14px;
+    }
 }

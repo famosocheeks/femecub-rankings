@@ -7,6 +7,8 @@
   
   <!-- CSS de DataTables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
+  
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdn.cubing.net/v0/css/@cubing/icons/css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet">
@@ -15,18 +17,7 @@
 <body>
   <div class="categorias-container">
     <h3>Categoría</h3>
-    <div class="categorias-grid">
-      <!-- Ejemplo de botones con íconos -->
-      <button class="categoria-btn" data-category="3x3x3">
-        <span class="cubing-icon event-222"></span> 
-      </button>
-      <button class="categoria-btn" data-category="4x4x4">
-        <span class="cubing-icon event-333"></span> 
-      </button>
-      <button class="categoria-btn" data-category="5x5x5">
-        <span class="cubing-icon event-444"></span> 
-      </button>
-      <!-- Agrega más botones según las categorías disponibles -->
+    <div class="categorias-grid" id="categories-buttons">
     </div>
   </div>
   
@@ -37,6 +28,7 @@
   
   <!-- JS de DataTables -->
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
 
   <script src="rankings.js"></script>
 </body>
