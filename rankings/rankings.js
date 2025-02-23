@@ -99,7 +99,7 @@ $(document).ready(async function () {
         data: 5, title: 'Promedio',
         render: function (data, type, row) {
           if (type === 'display') {
-            if (data === 36000) {
+            if (data === 60000) {
               return 'DNF'; // Mostrar "DNF" si el valor es "d"
             }
 
