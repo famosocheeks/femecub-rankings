@@ -1,0 +1,98 @@
+body {
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Fuente para los encabezados */
+table.dataTable thead th {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    /* Extra Bold */
+    background-color: #C2282D;
+    /* Color principal */
+    color: white;
+    /* Texto blanco */
+}
+
+/* Fuente para el contenido */
+table.dataTable tbody td {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    /* Regular */
+    color: black;
+    /* Texto negro */
+}
+
+/* Filas alternadas */
+table.dataTable tbody tr:nth-child(odd) {
+    background-color: #FDEDEE;
+    /* Color claro derivado del principal */
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background-color: white;
+    /* Fondo blanco */
+}
+
+/* Hover en filas del cuerpo de la tabla */
+table.dataTable tbody tr:hover {
+    background-color: #F8B4B6;
+    /* Hover derivado del principal */
+    color: black;
+}
+
+/* Botones de paginación normales */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    /* Regular */
+    background-color: #036738;
+    /* Color secundario */
+    color: white !important;
+    /* Texto blanco */
+    border: none;
+    margin: 0 2px;
+}
+
+/* Botón de paginación activo */
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    /* Extra Bold */
+    background-color: #C2282D;
+    /* Color principal */
+    color: white !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    color: white !important;
+    background-color: #036738;
+    background: #036738;
+}
+
+/* Hover en botones de paginación */
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #036738;
+    /* Color secundario (hover) */
+    background-color: #036738;
+    /* Color secundario (hover) */
+    color: white !important;
+}
+
+/* Fuente para el cuadro de búsqueda y selector de longitud */
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    /* Regular */
+    border: 1px solid #C2282D;
+    border-radius: 4px;
+    padding: 5px;
+    background-color: white;
+    color: black;
+}
+
+.dataTables_wrapper .dataTables_filter input:hover,
+.dataTables_wrapper .dataTables_length select:hover {
+    border-color: #036738;
+    /* Hover con el color secundario */
+}
