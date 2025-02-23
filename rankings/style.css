@@ -2,6 +2,69 @@ body {
     font-family: 'Nunito', sans-serif;
 }
 
+.contenedor-principal {
+    max-width: 1200px;
+    /* Ajusta el ancho máximo del contenido */
+    margin: 0 auto;
+    /* Centra el contenido horizontalmente */
+    padding: 0 20px;
+    /* Espaciado interno en los lados */
+}
+
+/* Configuración para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .contenedor-principal {
+        padding: 0 10px;
+        /* Reduce el espaciado en dispositivos móviles */
+    }
+}
+
+/* Contenedor principal */
+.categorias-container {
+    margin: 20px 0;
+}
+
+.categorias-container h3 {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    /* Extra Bold */
+    color: #C2282D;
+    /* Color principal */
+    margin-bottom: 10px;
+}
+
+/* Contenedor de los botones */
+.categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+    /* Ajusta columnas automáticamente */
+    gap: 10px;
+    /* Espaciado entre botones */
+}
+
+/* Botón de categoría */
+.categoria-btn {
+    background-color: #FDEDEE;
+    /* Fondo claro derivado del color principal */
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.categoria-btn:hover {
+    background-color: #C2282D;
+    color: white;
+    /* Fondo al pasar el mouse */
+}
+
+.categoria-btn img {
+    width: 30px;
+    /* Tamaño del ícono */
+    height: auto;
+}
+
 /* Fuente para los encabezados */
 table.dataTable thead th {
     font-family: 'Nunito', sans-serif;
