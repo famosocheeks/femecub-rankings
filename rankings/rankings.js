@@ -8,7 +8,8 @@ $(document).ready(async function () {
       category: '3X3',
       queryText: ['3x3', '3X3'],
       icon: 'event-333',
-      data: []
+      data: [],
+      onlyHasAverage: true
     },
     {
       category: '2X2',
@@ -23,6 +24,10 @@ $(document).ready(async function () {
       data: []
     }
   ];
+
+  const filterWithAverage = row => {
+    return row[5] > 0
+  }
  
   categories.forEach(category => {
     const button = document.createElement('button');
@@ -44,9 +49,9 @@ $(document).ready(async function () {
   });
 
   allMapped = categories.reduce((acc, category) => {
-    category.data = allData.data.filter(row => {
+    category.data = allData.data.sort((row, compare) => row[4] - compare[4]).filter(row => {
       const regex = new RegExp(category.queryText.join('|'), 'i');
-      return regex.test(row[1].toUpperCase());
+      return category.onlyHasAverage ? filterWithAverage(row) && regex.test(row[1].toUpperCase()) : regex.test(row[1].toUpperCase());
     });
     acc.push(category);
     return acc;
@@ -54,17 +59,15 @@ $(document).ready(async function () {
 
 
   //const filteredData = allData.data.filter(row => ['3x3', '3X3'].includes(row[1]));
-
   tableInstance = $('#tablaRankings').DataTable({
     data: allMapped[0].data,
-
     columns: [
       {
         title: '#', // Título de la columna
         render: function (data, type, row, meta) {
           return meta.row + 1; // Calcula el número de fila dinámicamente
         },
-        orderable: false, // Desactiva la capacidad de ordenar esta columna
+        orderable: true, // Desactiva la capacidad de ordenar esta columna
         searchable: false // Desactiva la búsqueda en esta columna
       },
       { data: 0, title: 'Torneo' },
@@ -100,7 +103,7 @@ $(document).ready(async function () {
         render: function (data, type, row) {
           if (type === 'display') {
             if (data === 60000) {
-              return 'DNF'; // Mostrar "DNF" si el valor es "d"
+              return 'DNF'; // Mostrar "DNF" si el valor es 60000
             }
 
             const tiempo = data / 100; // Convertir milisegundos a segundos
@@ -127,7 +130,7 @@ $(document).ready(async function () {
     pagingType: 'simple_numbers',
     pageLength: 30,
     lengthMenu: [30, 50, 100],
-    order: [[5, 'asc']],
+    
     responsive: true,
     columnDefs: [
       {
