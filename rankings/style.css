@@ -1,5 +1,19 @@
 body {
     font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+}
+
+.main-container {
+    display: flex;
+    
+    justify-content: center;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .main-container {
+        padding: 0 10rem;
+    }
 }
 
 /* Contenedor principal */

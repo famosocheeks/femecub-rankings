@@ -18,7 +18,25 @@ $(document).ready(async function () {
       data: []
     },
     {
-      category: 'SNAKE',
+      category: '4X4',
+      queryText: ['4x4', '4X4'],
+      icon: 'event-444',
+      data: []
+    },
+    {
+      category: 'Pyraminx',
+      queryText: ['pyraminx', 'Pyraminx'],
+      icon: 'event-444',
+      data: []
+    },
+    {
+      category: 'Rainbow',
+      queryText: ['rainbow', 'Rainbow', 'RAINBOW'],
+      icon: 'event-444',
+      data: []
+    },
+    {
+      category: 'Snake',
       queryText: ['snake', 'SNAKE'],
       icon: 'event-222',
       data: []
@@ -67,7 +85,7 @@ $(document).ready(async function () {
         render: function (data, type, row, meta) {
           return meta.row + 1; // Calcula el número de fila dinámicamente
         },
-        orderable: true, // Desactiva la capacidad de ordenar esta columna
+        orderable: false, // Desactiva la capacidad de ordenar esta columna
         searchable: false // Desactiva la búsqueda en esta columna
       },
       { data: 0, title: 'Torneo' },
@@ -133,6 +151,11 @@ $(document).ready(async function () {
     
     responsive: true,
     columnDefs: [
+      {
+        target: 2,
+        visible: false,
+        searchable: false,
+      },
       {
         target: 7,
         visible: false,
