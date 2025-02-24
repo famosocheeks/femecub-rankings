@@ -174,3 +174,22 @@ table.dataTable tbody tr.shown td.details-control {
         font-size: 14px;
     }
 }
+
+
+.categoria-points {
+    background: #036738;
+    background-color: #036738;
+    color: white;
+}
+
+.categoria-points:hover {
+    background: #036738;
+    background-color: #036738;
+    color: white;
+}
+
+.categoria-points .selected-button {
+    background: #036738;
+    background-color: #036738;
+    color: white;
+}

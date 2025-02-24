@@ -40,6 +40,11 @@ $(document).ready(async function () {
       queryText: ['snake', 'SNAKE'],
       icon: 'event-222',
       data: []
+    },
+    {
+      category: 'Puntos RODM',
+      withPoints: true,
+      data: []
     }
   ];
 
@@ -51,6 +56,9 @@ $(document).ready(async function () {
     const button = document.createElement('button');
     button.textContent = category.category;
     button.classList.add('categoria-btn');
+    if (category.withPoints) {
+      button.classList.add('categoria-points');
+    }
     button.setAttribute('data-category', category.category);
     button.addEventListener('click', (e) => {
       const allButtons = document.querySelectorAll('.categoria-btn');
@@ -68,8 +76,12 @@ $(document).ready(async function () {
 
   allMapped = categories.reduce((acc, category) => {
     category.data = allData.data.sort((row, compare) => row[4] - compare[4]).filter(row => {
-      const regex = new RegExp(category.queryText.join('|'), 'i');
-      return category.onlyHasAverage ? filterWithAverage(row) && regex.test(row[1].toUpperCase()) : regex.test(row[1].toUpperCase());
+      if (category.withPoints) {
+        return row[6] > 0;
+      } else {
+        const regex = new RegExp(category.queryText.join('|'), 'i');
+        return category.onlyHasAverage ? filterWithAverage(row) && regex.test(row[1].toUpperCase()) : regex.test(row[1].toUpperCase());
+      }
     });
     acc.push(category);
     return acc;
@@ -88,10 +100,10 @@ $(document).ready(async function () {
         orderable: false, // Desactiva la capacidad de ordenar esta columna
         searchable: false // Desactiva la búsqueda en esta columna
       },
-      { data: 0, title: 'Torneo' },
-      { data: 1, title: 'Cubo' },
-      { data: 2, title: 'Persona' },
-      { data: 3, title: 'Ronda' },
+      { data: 0, title: 'Torneo', orderable: false},
+      { data: 1, title: 'Cubo', orderable: false },
+      { data: 2, title: 'Persona', orderable: false },
+      { data: 3, title: 'Ronda', orderable: false },
       {
         data: 4, // Valor original
         title: 'Mejor Tiempo',
@@ -140,24 +152,19 @@ $(document).ready(async function () {
         }
       },
       { data: 6, title: 'Puntos RODM' },
-      { data: 7, title: 'Fechas' }
+      { data: 7, title: 'Fechas', orderable: false }
     ],
     language: {
       url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
     },
     pagingType: 'simple_numbers',
-    pageLength: 30,
-    lengthMenu: [30, 50, 100],
+    pageLength: 50,
+    lengthMenu: [50, 100, 150],
     
     responsive: true,
     columnDefs: [
       {
         target: 2,
-        visible: false,
-        searchable: false,
-      },
-      {
-        target: 7,
         visible: false,
         searchable: false,
       }
