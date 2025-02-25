@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tabla Rankings</title>
+  <meta name="description" content="Consulta los rankings nacionales de speedcubing en México, organizados por la Federación Mexicana de Cubos A.C. (FEMECUB).">
+  <meta name="keywords" content="FEMECUB, speedcubing, cubo de Rubik, rankings, México, competiciones">
+  <meta name="author" content="FEMECUB">
+
+  <title>FEMECUB - Ranking nacional</title>
   
   <!-- CSS de DataTables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
@@ -52,24 +56,27 @@
       </div>
     </div>
     <div class="clear-line">
-      <span class="title">Rankings nacionales</span>
+      <span class="title"><span class="green">RANKING</span> <span class="red">NACIONAL</span></span>
       <span>Espera mientras cargamos la información</span>
     </div>
   </div>
+  <section>
+    <h1><span class="green">RANKING</span> <span class="red">NACIONAL</span></h1>
+    <h2>Consulta el ranking nacional de los eventos organizados por la Federación Mexicana de Cubos S.A.</h2>
+  </section>
+  <div class="categorias-container">
+    <h3>Categoría</h3>
+    <div class="categorias-grid" id="categories-buttons">
+    </div>
+  </div>
+  <div class="type-container">
+    <h3>Tipo de ranking</h3>
+    <div class="types-grid" id="type-buttons">
+      <button class="type-btn type-selected" id="bestTime">Mejor tiempo</button>
+      <button class="type-btn" id="bestAverage">Mejor promedio</button>
+    </div>
+  </div>
   <div class="main-container">
-    <div class="categorias-container">
-      <h3>Categoría</h3>
-      <div class="categorias-grid" id="categories-buttons">
-      </div>
-    </div>
-    <div class="type-container">
-      <h3>Tipo de ranking</h3>
-      <div class="types-grid" id="type-buttons">
-        <button class="type-btn selected-button" id="bestTime">Mejor tiempo</button>
-        <button class="type-btn" id="bestAverage">Mejor promedio</button>
-      </div>
-    </div>
-    
     <table id="tablaRankings" class="display" style="width:100%"></table>
   </div>
   <!-- jQuery -->

@@ -1,6 +1,17 @@
 body {
     font-family: 'Nunito', sans-serif;
     font-size: 14px;
+    margin: 0;
+    padding: 0;
+}
+
+
+.current:hover {
+    color: white !important;
+}
+
+#tablaRankings_length, #tablaRankings_filter {
+    margin: 15px 0;
 }
 
 .hide {
@@ -14,7 +25,8 @@ body {
 }
 
 .title {
-    font-family: 'apotek';
+    font-family: "apotek-extended", sans-serif;
+    font-weight: 700;
     font-size: 35px;
     text-transform: capitalize;
 }
@@ -43,13 +55,36 @@ body {
     width: 100%;
 }
 
+.red {
+    color: #C2282D;
+}
+
+.green {
+    color: #036738;
+}
+
 /* Título */
 h1 {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    color: #C2282D;
-    text-align: center;
-    margin-bottom: 20px;
+    font-family: "apotek-extended", sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+    color: black;
+    text-align: left;
+    margin: 0;
+    padding: 0 30px;
+}
+
+h2 {
+    font-weight: 300;
+    color: black;
+    text-align: left;
+    padding: 0 30px;
+}
+h3 {
+    font-family: "apotek-extended", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 28px;
 }
 
 .categorias-grid, .types-grid {
@@ -59,22 +94,32 @@ h1 {
     flex-wrap: wrap;
 }
 
+.categorias-container {
+    background: #C2282D;
+    color: white;
+}
+
+.type-container {
+    background: #036738;
+    color: white;
+}
+
 /* Selector de categorías */
 .categorias-container, .type-container {
-    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
     align-items: center;
+    padding-bottom: 35px;
 }
 
 .categoria-btn, .type-btn {
-    background-color: #FDEDEE;
-    /* Fondo claro derivado del principal */
-    border-radius: 8px;
+    background-color: #FFF;
+    font-family: 'Nunito', sans-serif;
     padding: 10px;
+    margin: 3px;
     cursor: pointer;
     transition: transform ease-in-out .2s, background-color ease-in-out .2s;
     border: none;
@@ -82,7 +127,15 @@ h1 {
 }
 
 .categoria-btn:hover {
+    background-color: #036738;
+    color: white;
+    /* Fondo al pasar el mouse */
+    transform: scale(1.1);
+}
+
+.type-btn:hover {
     background-color: #C2282D;
+    color: white;
     /* Fondo al pasar el mouse */
     transform: scale(1.1);
 }
@@ -139,17 +192,23 @@ table.dataTable tbody td {
     background-color: #036738;
     /* Color secundario */
     color: white !important;
-    border-radius: 4px;
     border: none;
     margin-right: 5px;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .selected-button {
+.selected-button {
+    background-color: #036738;
+    background: #036738;
+    color: white;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .type-selected {
     background-color: #C2282D !important;
     background: #C2282D;
     /* Color principal para botón activo */
-    color: white;
+    color: white !important;
 }
+
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     background-color: #C2282D !important;
@@ -162,7 +221,6 @@ table.dataTable tbody td {
 .dataTables_wrapper .dataTables_length select {
     font-family: 'Nunito', sans-serif;
     font-weight: 400;
-    border-radius: 4px;
     padding: 5px;
     border: 1px solid #C2282D;
 }
@@ -182,7 +240,6 @@ table.dataTable tbody tr.shown td.details-control {
     /* Espaciado interno */
     background-color: #FDEDEE;
     /* Fondo claro derivado del color principal */
-    border-radius: 8px;
     /* Bordes redondeados */
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     /* Sombra ligera */
@@ -211,16 +268,4 @@ table.dataTable tbody tr.shown td.details-control {
     background: #036738 !important;
     background-color: #036738 !important;
     color: white !important;
-}
-
-.categoria-points:hover {
-    background: #036738;
-    background-color: #036738;
-    color: white;
-}
-
-.categoria-points .selected-button {
-    background: #036738;
-    background-color: #036738;
-    color: white;
 }

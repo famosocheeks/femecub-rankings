@@ -71,8 +71,8 @@ $(document).ready(async function () {
   const buttonOne = document.querySelector('#bestTime');
   const buttonTwo = document.querySelector('#bestAverage');
   buttonOne.addEventListener('click', (e) => {
-    e.target.classList.add('selected-button')
-    buttonTwo.classList.remove('selected-button');
+    e.target.classList.add('type-selected')
+    buttonTwo.classList.remove('type-selected');
     typeIsAverage = false;
     tableInstance.search('').columns().search('').page(0).draw();
     ocultaColumnas(true, [2, 6]);
@@ -83,8 +83,8 @@ $(document).ready(async function () {
   
   buttonTwo.addEventListener('click', (e) => {
     typeIsAverage = true;
-    e.target.classList.add('selected-button');
-    buttonOne.classList.remove('selected-button');
+    e.target.classList.add('type-selected');
+    buttonOne.classList.remove('type-selected');
     tableInstance.search('').columns().search('').page(0).draw();
     ocultaColumnas(true, [2, 5]);
     const averageData = categories.find(category => category.category === selectedCategory).bestAverageData;
@@ -92,13 +92,13 @@ $(document).ready(async function () {
     tableInstance.order([6, 'asc']).draw();
   });
 
-  categories.forEach(category => {
+  categories.forEach((category, index) => {
     const button = document.createElement('button');
     button.textContent = category.category;
-    button.classList.add('categoria-btn');
-    if (category.withPoints) {
-      button.classList.add('categoria-points');
+    if (index === 0) {
+      button.classList.add('selected-button');
     }
+    button.classList.add('categoria-btn');
     button.setAttribute('data-category', category.category);
     button.addEventListener('click', (e) => {
       selectedCategory = category.category;
