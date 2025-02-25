@@ -1,4 +1,10 @@
 $(document).ready(async function () {
+  const ocultaColumnas = (ocultar = false) => {
+    const columnasAOcultar = [4, 5, 6]; // Índices de las columnas
+    columnasAOcultar.forEach(col => {
+      tableInstance.column(col).visible(!ocultar);
+    });
+  }
   const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbx3wvninKWYDrQVNcnJqnLMREPOm2vO8nrHyYrhCzukxgrAdfYnfStkFJkS1vCmURHvAg/exec?apiKey=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&pageSize=2000');
   const allData = await allDataResponse.json();
   let allMapped = [];
@@ -19,13 +25,13 @@ $(document).ready(async function () {
     },
     {
       category: '4X4',
-      queryText: ['4x4', '4X4'],
+      queryText: ['4x4', '4X4', '4X4 LIBRE'],
       icon: 'event-444',
       data: []
     },
     {
       category: 'Pyraminx',
-      queryText: ['pyraminx', 'Pyraminx'],
+      queryText: ['pyraminx', 'Pyraminx', 'PYRAMINX'],
       icon: 'event-444',
       data: []
     },
@@ -43,6 +49,7 @@ $(document).ready(async function () {
     },
     {
       category: 'Puntos RODM',
+      queryText: [],
       withPoints: true,
       data: []
     }
@@ -51,7 +58,7 @@ $(document).ready(async function () {
   const filterWithAverage = row => {
     return row[5] > 0
   }
- 
+
   categories.forEach(category => {
     const button = document.createElement('button');
     button.textContent = category.category;
@@ -69,19 +76,37 @@ $(document).ready(async function () {
         }
       });
       e.target.classList.add('selected-button')
-      tableInstance.clear().rows.add(category.data).draw();
+      if (category.withPoints) {
+        tableInstance.clear().rows.add(category.data).draw();
+        ocultaColumnas(false);
+      } else {
+        tableInstance.clear().rows.add(category.data).draw();
+        ocultaColumnas(false);
+      }
     });
     $('.categorias-grid').append(button);
   });
 
   allMapped = categories.reduce((acc, category) => {
-    category.data = allData.data.sort((row, compare) => row[4] - compare[4]).filter(row => {
-      if (category.withPoints) {
-        return row[6] > 0;
-      } else {
-        const regex = new RegExp(category.queryText.join('|'), 'i');
-        return category.onlyHasAverage ? filterWithAverage(row) && regex.test(row[1].toUpperCase()) : regex.test(row[1].toUpperCase());
-      }
+    const seenIds = new Set(); // Almacena IDs únicos
+
+    category.data = allData.data.sort((row, compare) => row[4] - compare[4]).filter((row, index, self) => {
+      // 1. Validación inicial de fila
+        const isValid = category.withPoints
+          ? row[6] > 0
+          : new RegExp(category.queryText.join('|'), 'i').test(row[1]) &&
+            (!category.onlyHasAverage || filterWithAverage(row));
+        
+        // 2. Verificación de unicidad usando Set
+        const isUnique = !seenIds.has(row[2]);
+        if (category.withPoints) {
+          return isValid;
+        }
+        if (isValid && isUnique) {
+          seenIds.add(row[2]);
+          return true;
+        }
+        return false;
     });
     acc.push(category);
     return acc;
@@ -95,12 +120,13 @@ $(document).ready(async function () {
       {
         title: '#', // Título de la columna
         render: function (data, type, row, meta) {
-          return meta.row + 1; // Calcula el número de fila dinámicamente
+          return meta.settings._iDisplayStart + meta.row + 1;
         },
-        orderable: false, // Desactiva la capacidad de ordenar esta columna
+        orderable: true, // Desactiva la capacidad de ordenar esta columna
         searchable: false // Desactiva la búsqueda en esta columna
+        , data: null,
       },
-      { data: 0, title: 'Torneo', orderable: false},
+      { data: 0, title: 'Torneo', orderable: false },
       { data: 1, title: 'Cubo', orderable: false },
       { data: 2, title: 'Persona', orderable: false },
       { data: 3, title: 'Ronda', orderable: false },
@@ -160,7 +186,7 @@ $(document).ready(async function () {
     pagingType: 'simple_numbers',
     pageLength: 50,
     lengthMenu: [50, 100, 150],
-    
+
     responsive: true,
     columnDefs: [
       {
@@ -169,6 +195,14 @@ $(document).ready(async function () {
         searchable: false,
       }
     ]
+  });
+
+  tableInstance.on('order.dt', function () {
+    tableInstance.columns(0).nodes().each(function (cell, i) {
+      cell.forEach((node, index) => {
+        node.textContent = index + 1;
+      })
+    });
   });
 
 
