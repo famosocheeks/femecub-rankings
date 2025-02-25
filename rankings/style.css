@@ -36,7 +36,7 @@ h1 {
     margin-bottom: 20px;
 }
 
-.categorias-grid {
+.categorias-grid, .types-grid {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,16 +44,17 @@ h1 {
 }
 
 /* Selector de categorías */
-.categorias-container {
+.categorias-container, .type-container {
     margin-bottom: 20px;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
     align-items: center;
 }
 
-.categoria-btn {
+.categoria-btn, .type-btn {
     background-color: #FDEDEE;
     /* Fondo claro derivado del principal */
     border-radius: 8px;
