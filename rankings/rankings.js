@@ -252,8 +252,11 @@ $(document).ready(async function () {
   });
 
 
-
   
+  $('#tablaRankings').on('init.dt', function() {
+    const mainSpinner = document.querySelector('#main-spinner');
+    mainSpinner.classList.add('hide');
+  });
 
   tableInstance.on('order.dt', function () {
     tableInstance.columns(0).nodes().each(function (cell, i) {

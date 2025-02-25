@@ -8,13 +8,54 @@
   <!-- CSS de DataTables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
-  
+  <link rel="stylesheet" href="https://use.typekit.net/bwe7xvt.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cube-spinner.css">
   <link rel="stylesheet" href="https://cdn.cubing.net/v0/css/@cubing/icons/css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet">
 
 </head>
 <body>
+  <div class="loader" id="main-spinner">
+    <div class="rubiks-loader">
+      <div class="cube">
+        <!-- base position -->
+        <div class="face front piece row-top    col-left   yellow"></div>
+        <div class="face front piece row-top    col-center green "></div>
+        <div class="face front piece row-top    col-right  white "></div>
+        <div class="face front piece row-center col-left   blue  "></div>
+        <div class="face front piece row-center col-center green "></div>
+        <div class="face front piece row-center col-right  blue  "></div>
+        <div class="face front piece row-bottom col-left   green "></div>
+        <div class="face front piece row-bottom col-center yellow"></div>
+        <div class="face front piece row-bottom col-right  red   "></div>
+    
+        <!-- first step: E', equator inverted -->
+        <div class="face down  piece row-top    col-center green "></div>
+        <div class="face down  piece row-center col-center red   "></div>
+        <div class="face down  piece row-bottom col-center white "></div>
+    
+        <!-- second step: M, middle -->
+        <div class="face right piece row-center col-left   yellow"></div>
+        <div class="face right piece row-center col-center green "></div>
+        <div class="face right piece row-center col-right  blue  "></div>
+    
+        <!-- third step: L, left -->
+        <div class="face up    piece row-top    col-left   yellow"></div>
+        <div class="face up    piece row-center col-left   blue  "></div>
+        <div class="face up    piece row-bottom col-left   green "></div>
+    
+        <!-- fourth step: D, down -->
+        <div class="face left  piece row-bottom col-left   green "></div>
+        <div class="face left  piece row-bottom col-center yellow"></div>
+        <div class="face left  piece row-bottom col-right  red   "></div>
+      </div>
+    </div>
+    <div class="clear-line">
+      <span class="title">Rankings nacionales</span>
+      <span>Espera mientras cargamos la información</span>
+    </div>
+  </div>
   <div class="main-container">
     <div class="categorias-container">
       <h3>Categoría</h3>
@@ -24,7 +65,7 @@
     <div class="type-container">
       <h3>Tipo de ranking</h3>
       <div class="types-grid" id="type-buttons">
-        <button class="type-btn" id="bestTime">Mejor tiempo</button>
+        <button class="type-btn selected-button" id="bestTime">Mejor tiempo</button>
         <button class="type-btn" id="bestAverage">Mejor promedio</button>
       </div>
     </div>

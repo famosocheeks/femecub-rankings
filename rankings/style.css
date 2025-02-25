@@ -3,6 +3,22 @@ body {
     font-size: 14px;
 }
 
+.hide {
+    display: none !important;
+}
+
+.clear-line {
+    display: flex;
+    flex-direction: column;
+    padding-left: 60px;
+}
+
+.title {
+    font-family: 'apotek';
+    font-size: 35px;
+    text-transform: capitalize;
+}
+
 .main-container {
     display: flex;
     
