@@ -7,7 +7,7 @@ $(document).ready(async function () {
     redirectRankings();
   });
   let tableInstance;
-  const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbx3wvninKWYDrQVNcnJqnLMREPOm2vO8nrHyYrhCzukxgrAdfYnfStkFJkS1vCmURHvAg/exec?apiKey=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&pageSize=2000');
+  const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbxlLWeDubNS-7g0WhNdlzy9qBRiRDs_J_waPExcIIE5GGnhLcjrd-HxR9DzRkSrAnF85w/exec?apiKey=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&pageSize=2000');
   const allData = await allDataResponse.json();
 
   let processedData = {};
@@ -29,7 +29,8 @@ $(document).ready(async function () {
       category: row[1],
       stage: row[3],
       points: value,
-      date: row[7]
+      date: row[7],
+      categoryRow: row[9]
     });
   });
 
@@ -75,7 +76,7 @@ $(document).ready(async function () {
 
   function formatEvents(d) {
     let html = '<table cellpadding="5" cellspacing="0" border="0" style="width:100%;">';
-    html += '<tr><th>Serie</th><th>Modalidad</th><th>Etapa</th><th>Puntos</th><th>Fecha</th></tr>';
+    html += '<tr><th>Serie</th><th>Modalidad</th><th>Etapa</th><th>Puntos</th><th>Fecha</th><th>Categoría</th></tr>';
 
     d.events.forEach(function (event) {
       html += '<tr>' +
@@ -84,6 +85,7 @@ $(document).ready(async function () {
         '<td>' + event.stage + '</td>' +
         '<td>' + event.points.toLocaleString('es-ES', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '</td>' +
         '<td>' + event.date + '</td>' +
+        '<td>' + event.categoryRow + '</td>' +
         '</tr>';
     });
 
