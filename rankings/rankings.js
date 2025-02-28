@@ -1,4 +1,11 @@
+function redirectRodm() {
+  window.location.href = '/rodm/index.html'
+}
+
 $(document).ready(async function () {
+  document.querySelector('#rodm').addEventListener('click', () => {
+    redirectRodm();
+  });
   let tableInstance;
   let selectedCategory = '3X3';
   let typeIsAverage = false;
@@ -10,8 +17,9 @@ $(document).ready(async function () {
       tableInstance.column(col).visible(!ocultar);
     });
   }
-  const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbx3wvninKWYDrQVNcnJqnLMREPOm2vO8nrHyYrhCzukxgrAdfYnfStkFJkS1vCmURHvAg/exec?apiKey=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&pageSize=2000');
+  const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbxlLWeDubNS-7g0WhNdlzy9qBRiRDs_J_waPExcIIE5GGnhLcjrd-HxR9DzRkSrAnF85w/exec?apiKey=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&pageSize=2000');
   const allData = await allDataResponse.json();
+  console.log(allData)
   let allMapped = [];
   const categories = [
     {
@@ -51,17 +59,53 @@ $(document).ready(async function () {
       bestAverageData: [],
     },
     {
-      category: 'Snake',
-      queryText: ['snake', 'SNAKE'],
+      category: 'Snake Perro',
+      queryText: ['snake perro', 'SNAKE PERRO'],
       icon: 'event-222',
       data: [],
       bestAverageData: [],
     },
     {
-      category: 'Puntos RODM',
-      queryText: [],
-      withPoints: true,
-      data: []
+      category: 'Snake Gato',
+      queryText: ['snake gato', 'SNAKE GATO'],
+      icon: 'event-222',
+      data: [],
+      bestAverageData: [],
+    },
+    {
+      category: 'Snake Cruz',
+      queryText: ['snake cruz', 'SNAKE CRUZ'],
+      icon: 'event-222',
+      data: [],
+      bestAverageData: [],
+    },
+    {
+      category: 'Snake Ave',
+      queryText: ['snake ave', 'SNAKE AVE'],
+      icon: 'event-222',
+      data: [],
+      bestAverageData: [],
+    },
+    {
+      category: 'Snake Elefante',
+      queryText: ['snake elefante', 'SNAKE ELEFANTE'],
+      icon: 'event-222',
+      data: [],
+      bestAverageData: [],
+    },
+    {
+      category: 'Snake Nota Musical',
+      queryText: ['snake nota musical', 'SNAKE NOTA MUSICAL'],
+      icon: 'event-222',
+      data: [],
+      bestAverageData: [],
+    },
+    {
+      category: 'Batalla de Fichas',
+      queryText: ['batalla de fichas', 'BATALLA DE FICHAS'],
+      icon: 'event-222',
+      data: [],
+      bestAverageData: [],
     }
   ];
 
@@ -75,7 +119,7 @@ $(document).ready(async function () {
     buttonTwo.classList.remove('type-selected');
     typeIsAverage = false;
     tableInstance.search('').columns().search('').page(0).draw();
-    ocultaColumnas(true, [2, 6]);
+    ocultaColumnas(true, [2, 6, 7]);
     const timeData = categories.find(category => category.category === selectedCategory).data;
     tableInstance.clear().rows.add(timeData).draw();
     tableInstance.order([5, 'asc']).draw();
@@ -86,7 +130,7 @@ $(document).ready(async function () {
     e.target.classList.add('type-selected');
     buttonOne.classList.remove('type-selected');
     tableInstance.search('').columns().search('').page(0).draw();
-    ocultaColumnas(true, [2, 5]);
+    ocultaColumnas(true, [2, 5, 7]);
     const averageData = categories.find(category => category.category === selectedCategory).bestAverageData;
     tableInstance.clear().rows.add(averageData).draw();
     tableInstance.order([6, 'asc']).draw();
@@ -110,15 +154,9 @@ $(document).ready(async function () {
         }
       });
       e.target.classList.add('selected-button')
-      if (category.withPoints) {
-        tableInstance.clear().rows.add(typeIsAverage ? category.bestAverageData : category.data).draw();
-        ocultaColumnas(true);
-        tableInstance.order([7, 'desc']).draw();
-      } else {
-        tableInstance.clear().rows.add(typeIsAverage ? category.bestAverageData : category.data).draw();
-        ocultaColumnas(true, typeIsAverage ? [2, 5] : [2, 6]);
-        tableInstance.order([typeIsAverage ? 6 : 5, 'asc']).draw();
-      }
+      tableInstance.clear().rows.add(typeIsAverage ? category.bestAverageData : category.data).draw();
+      ocultaColumnas(true, typeIsAverage ? [2, 5, 7] : [2, 6, 7]);
+      tableInstance.order([typeIsAverage ? 6 : 5, 'asc']).draw();
     });
     $('.categorias-grid').append(button);
   });
@@ -232,7 +270,8 @@ $(document).ready(async function () {
         }
       },
       { data: 6, title: 'Puntos RODM', orderable: false },
-      { data: 7, title: 'Fechas', orderable: false }
+      { data: 7, title: 'Fechas', orderable: false },
+      { data: 9, title: 'Categoria', orderable: false }
     ],
     language: {
       url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
@@ -247,6 +286,9 @@ $(document).ready(async function () {
     {
       target: 6,
       visible: false
+    },{
+      target: 7,
+      visible: false
     }],
     responsive: true,
   });
@@ -256,6 +298,18 @@ $(document).ready(async function () {
   $('#tablaRankings').on('init.dt', function() {
     const mainSpinner = document.querySelector('#main-spinner');
     mainSpinner.classList.add('hide');
+    const searchFilter = document.querySelector('[type="search"]');
+    console.log(searchFilter);
+    searchFilter.addEventListener('keyup', function () {
+      console.log(tableInstance)
+      /*tableInstance.columns(0).nodes().each(function (cell, i) {
+        console.log('hace', cell);
+        cell.forEach((node, index) => {
+          console.log('hace', node);
+          node.textContent = index + 1;
+        })
+      });*/
+    });
   });
 
   tableInstance.on('order.dt', function () {
@@ -265,7 +319,4 @@ $(document).ready(async function () {
       })
     });
   });
-
-
-
 });
