@@ -1,5 +1,5 @@
 function redirectRankings() {
-  window.location.href = '/rankings/index.html'
+  window.location.href = '/femecub-rankings/rankings/index.html'
 }
 
 $(document).ready(async function () {

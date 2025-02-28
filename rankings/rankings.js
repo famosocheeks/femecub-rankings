@@ -1,5 +1,5 @@
 function redirectRodm() {
-  window.location.href = '/rodm/index.html'
+  window.location.href = '/femecub-rankings/rodm/index.html'
 }
 
 $(document).ready(async function () {
