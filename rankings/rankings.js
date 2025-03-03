@@ -9,6 +9,16 @@ $(document).ready(async function () {
   let tableInstance;
   let selectedCategory = '3X3';
   let typeIsAverage = false;
+  let realCategory = 'TODAS';
+  let selectedDataCategory = {};
+
+  const realCategoryFilter = (row) => {
+    if (realCategory === 'TODAS') {
+      return true;
+    }
+    return row[9] === realCategory;
+  }
+
   const ocultaColumnas = (ocultar = false, columnasAOcultar = [0, 1, 4, 5, 6, 8]) => {
     [0,1,2,3,4,5,6,7,8].forEach(col => {
       tableInstance.column(col).visible(true);
@@ -19,7 +29,13 @@ $(document).ready(async function () {
   }
   const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbxlLWeDubNS-7g0WhNdlzy9qBRiRDs_J_waPExcIIE5GGnhLcjrd-HxR9DzRkSrAnF85w/exec?apiKey=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&pageSize=2000');
   const allData = await allDataResponse.json();
-  console.log(allData)
+  const allCategories = allData.data.filter(row => row[9] !== '').reduce((row, item) => {
+    row.add(item[9]);
+    return row;
+  }, new Set(['TODAS']));
+
+  //allCategories.add('TODAS');
+  console.log(allData, allCategories);
   let allMapped = [];
   const categories = [
     {
@@ -121,7 +137,7 @@ $(document).ready(async function () {
     tableInstance.search('').columns().search('').page(0).draw();
     ocultaColumnas(true, [2, 6, 7]);
     const timeData = categories.find(category => category.category === selectedCategory).data;
-    tableInstance.clear().rows.add(timeData).draw();
+    tableInstance.clear().rows.add(timeData.filter(realCategoryFilter)).draw();
     tableInstance.order([5, 'asc']).draw();
   });
   
@@ -132,8 +148,37 @@ $(document).ready(async function () {
     tableInstance.search('').columns().search('').page(0).draw();
     ocultaColumnas(true, [2, 5, 7]);
     const averageData = categories.find(category => category.category === selectedCategory).bestAverageData;
-    tableInstance.clear().rows.add(averageData).draw();
+    tableInstance.clear().rows.add(averageData.filter(realCategoryFilter)).draw();
     tableInstance.order([6, 'asc']).draw();
+  });
+
+  allCategories.forEach(category => {
+    const button = document.createElement('button');
+    button.textContent = category;
+    button.classList.add('categoria-filter-btn');
+    button.setAttribute('data-category', category);
+    button.classList.add('real-category-btn');
+    if (category === 'TODAS') {
+      button.classList.add('selected-button');
+    }
+    const containerOfButtons = document.querySelector('#category-buttons');
+    containerOfButtons.appendChild(button);
+    button.addEventListener('click', (e) => {
+      console.log(category);
+      realCategory = category;
+      const allButtons = document.querySelectorAll('.categoria-filter-btn');
+      tableInstance.search('').columns().search('').page(0).draw();
+      allButtons.forEach(btn => {
+        if (btn !== e.target) {
+          btn.classList.remove('selected-button');
+        }
+      });
+      e.target.classList.add('selected-button')
+      const filterData = typeIsAverage ? selectedDataCategory.bestAverageData : selectedDataCategory.data;
+      tableInstance.clear().rows.add(filterData.filter(realCategoryFilter)).draw();
+      ocultaColumnas(true, typeIsAverage ? [2, 5, 7] : [2, 6, 7]);
+      tableInstance.order([typeIsAverage ? 6 : 5, 'asc']).draw();
+    });
   });
 
   categories.forEach((category, index) => {
@@ -145,6 +190,7 @@ $(document).ready(async function () {
     button.classList.add('categoria-btn');
     button.setAttribute('data-category', category.category);
     button.addEventListener('click', (e) => {
+      selectedDataCategory = category;
       selectedCategory = category.category;
       const allButtons = document.querySelectorAll('.categoria-btn');
       tableInstance.search('').columns().search('').page(0).draw();
@@ -154,7 +200,8 @@ $(document).ready(async function () {
         }
       });
       e.target.classList.add('selected-button')
-      tableInstance.clear().rows.add(typeIsAverage ? category.bestAverageData : category.data).draw();
+      const filteredData = typeIsAverage ? category.bestAverageData : category.data;
+      tableInstance.clear().rows.add(filteredData.filter(realCategoryFilter)).draw();
       ocultaColumnas(true, typeIsAverage ? [2, 5, 7] : [2, 6, 7]);
       tableInstance.order([typeIsAverage ? 6 : 5, 'asc']).draw();
     });
@@ -204,6 +251,7 @@ $(document).ready(async function () {
 
 
   //const filteredData = allData.data.filter(row => ['3x3', '3X3'].includes(row[1]));
+  selectedDataCategory = allMapped[0];
   tableInstance = $('#tablaRankings').DataTable({
     data: allMapped[0].data,
     columns: [

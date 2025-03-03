@@ -122,8 +122,13 @@ h3 {
     color: white;
 }
 
+.category-container {
+    background: #212121;
+    color: white;
+}
+
 /* Selector de categorías */
-.categorias-container, .type-container {
+.categorias-container, .type-container, .category-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -131,9 +136,10 @@ h3 {
     gap: 15px;
     align-items: center;
     padding: 10px 0;
+    width: 100%;
 }
 
-.categoria-btn, .type-btn {
+.categoria-btn, .type-btn, .real-category-btn {
     background-color: #FFF;
     font-family: 'Nunito', sans-serif;
     padding: 10px;
@@ -286,4 +292,9 @@ table.dataTable tbody tr.shown td.details-control {
     background: #036738 !important;
     background-color: #036738 !important;
     color: white !important;
+}
+
+.two-columns {
+    display: flex;
+    justify-content: center;
 }
