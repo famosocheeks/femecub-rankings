@@ -320,7 +320,7 @@ $(document).ready(async function () {
       { data: 6, title: 'Puntos RODM', orderable: false },
       { data: 7, title: 'Fechas', orderable: false },
       { data: 9, title: 'Categoria', orderable: false },
-      { data: 10, title: 'Estado', orderable: false }
+      { data: 8, title: 'Estado', orderable: false }
     ],
     language: {
       url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
