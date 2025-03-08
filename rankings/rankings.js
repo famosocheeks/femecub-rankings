@@ -325,6 +325,9 @@ $(document).ready(async function () {
     language: {
       url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
     },
+    oLanguage: {
+      sSearch: 'Buscar persona, evento:'
+    },
     pagingType: 'simple_numbers',
     pageLength: 50,
     lengthMenu: [50, 100, 150],
