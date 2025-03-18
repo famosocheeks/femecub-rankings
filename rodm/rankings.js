@@ -11,7 +11,7 @@ $(document).ready(async function () {
   const allData = await allDataResponse.json();
 
   let processedData = {};
-  allData.data.filter((row) => row[3] === 'FINAL' && row[6] > 0).forEach(function (row) {
+  allData.data.filter((row) => row[6] > 0).forEach(function (row) {
     let name = row[2];
     let value = parseFloat(row[6]) || 0;
 
