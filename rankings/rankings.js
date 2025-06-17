@@ -126,7 +126,7 @@ $(document).ready(async function () {
   ];
 
   const filterWithAverage = row => {
-    return row[5] > 0
+    return row[5] >= 0
   }
   const buttonOne = document.querySelector('#bestTime');
   const buttonTwo = document.querySelector('#bestAverage');
