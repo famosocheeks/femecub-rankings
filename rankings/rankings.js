@@ -117,9 +117,30 @@ $(document).ready(async function () {
       bestAverageData: [],
     },
     {
+      category: 'Snake Pez',
+      queryText: ['snake pez', 'SNAKE PEZ'],
+      icon: 'event-222',
+      data: [],
+      bestAverageData: [],
+    },
+    {
       category: 'Batalla de Fichas',
       queryText: ['batalla de fichas', 'BATALLA DE FICHAS'],
       icon: 'event-222',
+      data: [],
+      bestAverageData: [],
+    },
+    {
+      category: '3X3 Una Mano',
+      queryText: ['3X3 UNA MANO', '3x3 una mano'],
+      icon: 'event-333oh',
+      data: [],
+      bestAverageData: [],
+    },
+    {
+      category: 'Skewb',
+      queryText: ['Skewb', 'skewb'],
+      icon: 'event-skewb',
       data: [],
       bestAverageData: [],
     }
