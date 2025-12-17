@@ -78,5 +78,6 @@ $(document).ready(function () {
         order: [[5, 'asc']],
         responsive: true
       });
+      $('#main-spinner').addClass('hide');
     });
 });
