@@ -8,15 +8,59 @@
   <!-- CSS de DataTables -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="cube-spinner.css">
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet">
 
 </head>
 <body>
-  <div style="margin-bottom: 20px; text-align: center; font-family: 'Nunito', sans-serif;">
-      <a href="index.html" style="text-decoration: none; background-color: #036738; color: white; padding: 10px 20px; border-radius: 5px; font-weight: 800;">Ver Ranking 3x3</a>
+  <div class="loader" id="main-spinner">
+    <div class="rubiks-loader">
+      <div class="cube">
+        <!-- base position -->
+        <div class="face front piece row-top    col-left   yellow"></div>
+        <div class="face front piece row-top    col-center green "></div>
+        <div class="face front piece row-top    col-right  white "></div>
+        <div class="face front piece row-center col-left   blue  "></div>
+        <div class="face front piece row-center col-center green "></div>
+        <div class="face front piece row-center col-right  blue  "></div>
+        <div class="face front piece row-bottom col-left   green "></div>
+        <div class="face front piece row-bottom col-center yellow"></div>
+        <div class="face front piece row-bottom col-right  red   "></div>
+
+        <!-- first step: E', equator inverted -->
+        <div class="face down  piece row-top    col-center green "></div>
+        <div class="face down  piece row-center col-center red   "></div>
+        <div class="face down  piece row-bottom col-center white "></div>
+
+        <!-- second step: M, middle -->
+        <div class="face right piece row-center col-left   yellow"></div>
+        <div class="face right piece row-center col-center green "></div>
+        <div class="face right piece row-center col-right  blue  "></div>
+
+        <!-- third step: L, left -->
+        <div class="face up    piece row-top    col-left   yellow"></div>
+        <div class="face up    piece row-center col-left   blue  "></div>
+        <div class="face up    piece row-bottom col-left   green "></div>
+
+        <!-- fourth step: D, down -->
+        <div class="face left  piece row-bottom col-left   green "></div>
+        <div class="face left  piece row-bottom col-center yellow"></div>
+        <div class="face left  piece row-bottom col-right  red   "></div>
+      </div>
+    </div>
+    <div class="clear-line">
+      <span class="title"><span class="green">RANKING</span> <span class="red">NACIONAL</span></span>
+      <span>Espera mientras cargamos la información</span>
+    </div>
   </div>
 
-  <table id="tablaRankings" class="display" style="width:100%"></table>
+  <div class="main-container">
+    <div style="margin-bottom: 20px; text-align: center; font-family: 'Nunito', sans-serif;">
+        <a href="index.html" style="text-decoration: none; background-color: #036738; color: white; padding: 10px 20px; border-radius: 5px; font-weight: 800;">Ver Ranking 3x3</a>
+    </div>
+
+    <table id="tablaRankings" class="display" style="width:100%"></table>
+  </div>
 
   <!-- jQuery -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
