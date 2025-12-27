@@ -1,11 +1,123 @@
 $(document).ready(function () {
+  const categories = [
+    {
+      category: '3X3',
+      queryText: ['3x3', '3X3'],
+      icon: 'event-333'
+    },
+    {
+      category: '2X2',
+      queryText: ['2x2', '2X2'],
+      icon: 'event-222'
+    },
+    {
+      category: '4X4',
+      queryText: ['4x4', '4X4', '4X4 LIBRE'],
+      icon: 'event-444'
+    },
+    {
+      category: 'Pyraminx',
+      queryText: ['pyraminx', 'Pyraminx', 'PYRAMINX'],
+      icon: 'event-444'
+    },
+    {
+      category: 'Rainbow',
+      queryText: ['rainbow', 'Rainbow', 'RAINBOW'],
+      icon: 'event-444'
+    },
+    {
+      category: 'Snake Perro',
+      queryText: ['snake perro', 'SNAKE PERRO'],
+      icon: 'event-222'
+    },
+    {
+      category: 'Snake Gato',
+      queryText: ['snake gato', 'SNAKE GATO'],
+      icon: 'event-222'
+    },
+    {
+      category: 'Snake Cruz',
+      queryText: ['snake cruz', 'SNAKE CRUZ'],
+      icon: 'event-222'
+    },
+    {
+      category: 'Snake Ave',
+      queryText: ['snake ave', 'SNAKE AVE'],
+      icon: 'event-222'
+    },
+    {
+      category: 'Snake Elefante',
+      queryText: ['snake elefante', 'SNAKE ELEFANTE'],
+      icon: 'event-222'
+    },
+    {
+      category: 'Snake Nota Musical',
+      queryText: ['snake nota musical', 'SNAKE NOTA MUSICAL'],
+      icon: 'event-222'
+    },
+    {
+      category: 'Snake Pez',
+      queryText: ['snake pez', 'SNAKE PEZ'],
+      icon: 'event-222'
+    },
+    {
+      category: 'Batalla de Fichas',
+      queryText: ['batalla de fichas', 'BATALLA DE FICHAS'],
+      icon: 'event-222'
+    },
+    {
+      category: '3X3 Una Mano',
+      queryText: ['3X3 UNA MANO', '3x3 una mano'],
+      icon: 'event-333oh'
+    },
+    {
+      category: 'Skewb',
+      queryText: ['Skewb', 'skewb'],
+      icon: 'event-skewb'
+    }
+  ];
+
   fetch('https://script.google.com/macros/s/AKfycbx3wvninKWYDrQVNcnJqnLMREPOm2vO8nrHyYrhCzukxgrAdfYnfStkFJkS1vCmURHvAg/exec?apiKey=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&pageSize=2000')
     .then(response => response.json())
     .then(rankings => {
       console.log(rankings.data);
-      $('#tablaRankings').DataTable({
-        data: rankings.data,
 
+      // Render Modalidad Buttons
+      const container = document.querySelector('#categories-buttons');
+
+      // "TODAS" Button
+      const allButton = document.createElement('button');
+      allButton.textContent = 'TODAS';
+      allButton.classList.add('categoria-btn', 'selected-button');
+      allButton.addEventListener('click', (e) => {
+        updateActiveButton(e.target);
+        table.column(2).search('').draw();
+      });
+      container.appendChild(allButton);
+
+      // Category Buttons
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.textContent = cat.category;
+        btn.classList.add('categoria-btn');
+        btn.setAttribute('data-category', cat.category);
+        btn.addEventListener('click', (e) => {
+          updateActiveButton(e.target);
+          const regex = cat.queryText.join('|');
+          table.column(2).search(regex, true, false).draw();
+        });
+        container.appendChild(btn);
+      });
+
+      function updateActiveButton(target) {
+        document.querySelectorAll('.categoria-btn').forEach(btn => {
+          btn.classList.remove('selected-button');
+        });
+        target.classList.add('selected-button');
+      }
+
+      const table = $('#tablaRankings').DataTable({
+        data: rankings.data,
         columns: [
           {
             title: '#', // Título de la columna
