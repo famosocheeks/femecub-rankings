@@ -1,23 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todos los resultados</title>
+  <meta name="description"
+    content="Consulta todos los resultados nacionales de speedcubing en México, organizados por la Federación Mexicana de Cubos A.C. (FEMECUB).">
+  <title>FEMECUB - Todos los Resultados</title>
 
-  <!-- CSS de DataTables -->
-  <link rel="stylesheet" href="https://use.typekit.net/bwe7xvt.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            femecub: { red: '#B91C1C', green: '#036738', dark: '#1E293B' }
+          },
+          fontFamily: { nunito: ['Nunito', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+
+  <!-- DataTables CSS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="cube-spinner.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.4.1/css/responsive.dataTables.min.css">
 
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/bwe7xvt.css">
+
+  <!-- Cube spinner + shared styles -->
+  <link rel="stylesheet" href="cube-spinner.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="loader" id="main-spinner">
+
+<body class="font-nunito bg-gradient-to-br from-slate-100 via-blue-50 to-slate-200 min-h-screen">
+
+  <!-- ─── LOADER ────────────────────────────────────────── -->
+  <div class="loader fixed inset-0 z-50 flex flex-col items-center justify-center bg-white gap-6" id="main-spinner">
     <div class="rubiks-loader">
       <div class="cube">
-        <!-- base position -->
         <div class="face front piece row-top    col-left   yellow"></div>
         <div class="face front piece row-top    col-center green "></div>
         <div class="face front piece row-top    col-right  white "></div>
@@ -27,56 +51,77 @@
         <div class="face front piece row-bottom col-left   green "></div>
         <div class="face front piece row-bottom col-center yellow"></div>
         <div class="face front piece row-bottom col-right  red   "></div>
-
-        <!-- first step: E', equator inverted -->
         <div class="face down  piece row-top    col-center green "></div>
         <div class="face down  piece row-center col-center red   "></div>
         <div class="face down  piece row-bottom col-center white "></div>
-
-        <!-- second step: M, middle -->
         <div class="face right piece row-center col-left   yellow"></div>
         <div class="face right piece row-center col-center green "></div>
         <div class="face right piece row-center col-right  blue  "></div>
-
-        <!-- third step: L, left -->
         <div class="face up    piece row-top    col-left   yellow"></div>
         <div class="face up    piece row-center col-left   blue  "></div>
         <div class="face up    piece row-bottom col-left   green "></div>
-
-        <!-- fourth step: D, down -->
         <div class="face left  piece row-bottom col-left   green "></div>
         <div class="face left  piece row-bottom col-center yellow"></div>
         <div class="face left  piece row-bottom col-right  red   "></div>
       </div>
     </div>
-    <div class="clear-line">
-      <span class="title"><span class="green">RANKING</span> <span class="red">NACIONAL</span></span>
-      <span>Espera mientras cargamos la información</span>
+    <div class="flex flex-col items-center gap-1 text-center">
+      <span class="font-extrabold text-2xl tracking-widest" style="font-family:'apotek-extended',sans-serif;">
+        <span class="text-femecub-green">TODOS LOS</span> <span class="text-femecub-red">RESULTADOS</span>
+      </span>
+      <span class="text-slate-500 text-sm">Espera mientras cargamos la información…</span>
     </div>
-  </div>
-  <section class="header-content">
-    <h1><span class="green">RANKING</span> <span class="red">NACIONAL</span></h1>
-    <h2>Consulta todos los resultados de la Federación Mexicana de Cubos A.C.</h2>
-    <p class="h2">Consulta tus puntos para el gran premio de $40,000 pesos en efectivo, $10,000 por categoría.</p>
-    <div style="margin-bottom: 20px; text-align: center; font-family: 'Nunito', sans-serif;">
-     <a href="index.html" style="text-decoration: none; background-color: #036738; color: white; padding: 10px 20px; border-radius: 5px; font-weight: 800;">Ver Ranking</a>
-    </div>
-  </section>
-  <div class="categorias-container">
-    <h3>Modalidad</h3>
-    <div class="categorias-grid" id="categories-buttons">
-    </div>
-  </div>
-  <div class="main-container">
-    <table id="tablaRankings" class="display" style="width:100%"></table>
   </div>
 
-  <!-- jQuery -->
+  <!-- ─── HERO ──────────────────────────────────────────── -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-2">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+      <div>
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight"
+          style="font-family:'apotek-extended',sans-serif;">
+          <span class="text-femecub-green">TODOS LOS</span> <span class="text-femecub-red">RESULTADOS</span>
+        </h1>
+        <p class="mt-1 text-slate-500 text-sm">Registro completo de resultados de la Federación Mexicana de Cubos A.C.
+        </p>
+      </div>
+      <a href="index.html"
+        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-femecub-green text-white text-sm font-bold shadow hover:bg-green-800 transition-colors self-start sm:self-auto">
+        ← Ver Ranking
+      </a>
+    </div>
+  </div>
+
+  <!-- ─── FILTERS CARD ──────────────────────────────────── -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 flex flex-col gap-4">
+
+      <!-- Modalidad -->
+      <div>
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Modalidad</p>
+        <div id="categories-buttons" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <!-- Snake sub-filter (hidden by default) -->
+      <div id="snake-filter-container" class="hidden">
+        <p class="text-xs font-bold text-amber-700 uppercase tracking-wider mb-2">🐍 Figura Snake</p>
+        <div id="snake-buttons" class="flex flex-wrap gap-2"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ─── TABLE CARD ────────────────────────────────────── -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-5 pb-12">
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+      <table id="tablaRankings" class="display w-full"></table>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-
-  <!-- JS de DataTables -->
   <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
+  <script src="https://cdn.datatables.net/responsive/2.4.1/js/dataTables.responsive.min.js"></script>
   <script src="all_results.js"></script>
 </body>
+
 </html>

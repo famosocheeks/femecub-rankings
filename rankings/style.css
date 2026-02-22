@@ -1,286 +1,269 @@
+/* ============================================================
+   FEMECUB Rankings – Custom CSS (complementary to Tailwind)
+   ============================================================ */
+
+/* ── Fonts ── */
 body {
     font-family: 'Nunito', sans-serif;
-    font-size: 14px;
-    margin: 0;
-    padding: 0;
 }
 
-
-.current:hover {
-    color: white !important;
-}
-
-#tablaRankings_length, #tablaRankings_filter {
-    margin: 15px 0;
-}
-
+/* ── Loader ── */
 .hide {
     display: none !important;
 }
 
-.clear-line {
-    display: flex;
-    flex-direction: column;
-    padding-left: 60px;
+/* ── Modality / category buttons (Tailwind-styled via JS classes) ── */
+.categoria-btn,
+.type-btn,
+.real-category-btn,
+.snake-btn {
+    padding: 6px 14px;
+    border-radius: 9999px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    border: 1.5px solid #e2e8f0;
+    background: #f8fafc;
+    color: #475569;
+    transition: all 0.18s ease;
+    white-space: nowrap;
 }
 
-.title {
-    font-family: "apotek-extended", sans-serif;
+.categoria-btn:hover,
+.real-category-btn:hover {
+    background: #036738;
+    color: white;
+    border-color: #036738;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(3, 103, 56, 0.25);
+}
+
+.type-btn:hover {
+    background: #B91C1C;
+    color: white;
+    border-color: #B91C1C;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(185, 28, 28, 0.25);
+}
+
+.snake-btn:hover {
+    background: #92400e;
+    color: white;
+    border-color: #92400e;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(146, 64, 14, 0.25);
+}
+
+/* Active states */
+.selected-button {
+    background: #036738 !important;
+    color: white !important;
+    border-color: #036738 !important;
+    box-shadow: 0 4px 12px rgba(3, 103, 56, 0.3) !important;
+}
+
+.type-selected {
+    background: #B91C1C !important;
+    color: white !important;
+    border-color: #B91C1C !important;
+    box-shadow: 0 4px 12px rgba(185, 28, 28, 0.3) !important;
+}
+
+/* ── DataTable overrides ── */
+div.dataTables_wrapper {
+    padding: 16px 20px;
+}
+
+table.dataTable {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100% !important;
+}
+
+/* Header */
+table.dataTable thead th {
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 35px;
-    text-transform: capitalize;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    background: #f8fafc;
+    border-bottom: 2px solid #e2e8f0;
+    padding: 12px 16px;
 }
 
-.main-container {
-    display: flex;
-    
+table.dataTable thead th.sorting:after,
+table.dataTable thead th.sorting_asc:after,
+table.dataTable thead th.sorting_desc:after {
+    color: #94a3b8;
+}
+
+/* Body rows */
+table.dataTable tbody tr {
+    transition: background 0.12s;
+}
+
+table.dataTable tbody tr:nth-child(odd) {
+    background: #ffffff;
+}
+
+table.dataTable tbody tr:nth-child(even) {
+    background: #f8fafc;
+}
+
+table.dataTable tbody tr:hover {
+    background: #eff6ff !important;
+}
+
+table.dataTable tbody td {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #1e293b;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+/* Rank badge column */
+td.rank-cell {
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
     justify-content: center;
-    flex-direction: column;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.85rem;
 }
 
-@media (min-width: 768px) {
-    .main-container {
-        padding: 0 10rem;
-    }
+.rank-badge-1 {
+    background: #d97706;
+    color: white;
 }
 
-/* Contenedor principal */
-.contenedor-principal {
-    max-width: 1200px;
-    margin: 20px auto;
-    padding: 0 20px;
+.rank-badge-2 {
+    background: #94a3b8;
+    color: white;
+}
+
+.rank-badge-3 {
+    background: #b45309;
+    color: white;
+}
+
+.rank-badge-other {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+/* Time values – green bold */
+.time-value {
+    font-weight: 800;
+    color: #15803d;
+    font-size: 0.9rem;
+}
+
+/* Tournament name – muted */
+.tournament-name {
+    font-size: 0.78rem;
+    color: #94a3b8;
+}
+
+/* Search and length inputs */
+.dataTables_wrapper .dataTables_filter input,
+.dataTables_wrapper .dataTables_length select {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    outline: none;
+    transition: border 0.15s;
+    background: #f8fafc;
+}
+
+.dataTables_wrapper .dataTables_filter input:focus,
+.dataTables_wrapper .dataTables_length select:focus {
+    border-color: #036738;
+    box-shadow: 0 0 0 3px rgba(3, 103, 56, 0.1);
+}
+
+/* Filter & length labels */
+.dataTables_wrapper .dataTables_filter label,
+.dataTables_wrapper .dataTables_length label {
+    font-size: 0.82rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+/* Pagination */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    border-radius: 8px !important;
+    padding: 5px 10px !important;
+    margin: 2px !important;
+    border: 1.5px solid #e2e8f0 !important;
+    background: #f8fafc !important;
+    color: #475569 !important;
+    transition: all 0.15s;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background: #036738 !important;
+    border-color: #036738 !important;
+    color: white !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(3, 103, 56, 0.2) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background: #B91C1C !important;
+    border-color: #B91C1C !important;
+    color: white !important;
+    box-shadow: 0 4px 10px rgba(185, 28, 28, 0.25) !important;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+    background: #f1f5f9 !important;
+    color: #cbd5e1 !important;
+    border-color: #f1f5f9 !important;
+    transform: none;
+    box-shadow: none !important;
+}
+
+/* Info text */
+.dataTables_wrapper .dataTables_info {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    padding-top: 8px;
+}
+
+/* Responsive child rows */
+.dataTables_wrapper .child-row {
+    background: #f0fdf4;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.85rem;
+    color: #1e293b;
+    padding: 10px 16px;
 }
 
 .dtr-details {
     width: 100%;
 }
 
-.red {
-    color: #C2282D;
-}
-
-.green {
-    color: #036738;
-}
-
-/* Título */
-h1 {
-    font-family: "apotek-extended", sans-serif;
-    font-weight: 700;
-    font-size: 40px;
-    color: black;
-    text-align: left;
-    margin: 0;
-    padding: 0 30px;
-}
-
-.header-content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-}
-
-.rodm {
-    background: #036738;
-    color: white;
-    border: 0;
-    padding: 15px;
-    margin: 15px 0;
-    cursor: pointer;
-}
-
-h2, .h2 {
-    font-weight: 300;
-    color: black;
-    text-align: left;
-    padding: 0;
-    margin: 0 auto;
-}
-h3 {
-    font-family: "apotek-extended", sans-serif;
-    font-weight: 300;
-    font-style: normal;
-    font-size: 28px;
-    margin: 0;
-}
-
-.categorias-grid, .types-grid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.categorias-container {
-    background: #C2282D;
-    color: white;
-}
-
-.type-container {
-    background: #036738;
-    color: white;
-}
-
-.category-container {
-    background: #212121;
-    color: white;
-}
-
-/* Selector de categorías */
-.categorias-container, .type-container, .category-container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    align-items: center;
-    padding: 10px 0;
-    width: 100%;
-}
-
-.categoria-btn, .type-btn, .real-category-btn {
-    background-color: #FFF;
-    font-family: 'Nunito', sans-serif;
-    padding: 10px;
-    margin: 3px;
-    cursor: pointer;
-    transition: transform ease-in-out .2s, background-color ease-in-out .2s;
-    border: none;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.categoria-btn:hover {
-    background-color: #036738;
-    color: white;
-    /* Fondo al pasar el mouse */
-    transform: scale(1.1);
-}
-
-.type-btn:hover {
-    background-color: #C2282D;
-    color: white;
-    /* Fondo al pasar el mouse */
-    transform: scale(1.1);
-}
-
-.categoria-btn img {
-    width: 40px;
-    /* Tamaño del ícono */
-    height: auto;
-}
-
-/* Tabla estilizada */
-table.dataTable thead th {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 800;
-    /* Extra Bold */
-    background-color: #C2282D;
-    /* Color principal */
-    color: white;
-    /* Texto blanco */
-    text-transform: uppercase;
-    /* Texto en mayúsculas */
-}
-
-table.dataTable tbody tr:nth-child(odd) {
-    background-color: #FDEDEE;
-    /* Fondo claro derivado del principal */
-}
-
-table.dataTable tbody tr:nth-child(even) {
-    background-color: white;
-    /* Fondo blanco */
-}
-
-table.dataTable tbody tr:hover {
-    background-color: #F8B4B6;
-    /* Hover en filas */
-    color: black;
-    /* Texto negro */
-}
-
-table.dataTable tbody td {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-    /* Regular */
-    color: black;
-    /* Texto negro */
-}
-
-/* Botones de paginación */
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-    /* Regular */
-    background-color: #036738;
-    /* Color secundario */
-    color: white !important;
-    border: none;
-    margin-right: 5px;
-}
-
-.selected-button {
-    background-color: #036738;
-    background: #036738;
-    color: white;
-}
-
-.dataTables_wrapper .dataTables_paginate .paginate_button.current, .type-selected {
-    background-color: #C2282D !important;
-    background: #C2282D;
-    /* Color principal para botón activo */
-    color: white !important;
-}
-
-
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background-color: #C2282D !important;
-    background: #C2282D;
-    color: white;
-}
-
-/* Cuadro de búsqueda y selector de registros */
-.dataTables_wrapper .dataTables_filter input,
-.dataTables_wrapper .dataTables_length select {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-    padding: 5px;
-    border: 1px solid #C2282D;
-}
-
-table.dataTable tbody tr.shown td.details-control {
-    background-color: #FDEDEE;
-    /* Fondo claro derivado del color principal */
-}
-
-/* Contenedor del contenido desplegable */
-.dataTables_wrapper .child-row {
-    text-align: center;
-    /* Centra el contenido */
-    width: 100%;
-    /* Ocupa todo el ancho disponible */
-    padding: 10px;
-    /* Espaciado interno */
-    background-color: #FDEDEE;
-    /* Fondo claro derivado del color principal */
-    /* Bordes redondeados */
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-    /* Sombra ligera */
-    font-family: 'Nunito', sans-serif;
-    font-weight: 400;
-    color: black;
-}
-
-/* Ajuste para dispositivos móviles */
-@media (max-width: 768px) {
-    .dataTables_wrapper .child-row {
-        padding: 8px;
-        font-size: 14px;
-    }
-}
-
-.group-header > td{
+/* Group header rows */
+.group-header>td {
     color: white !important;
 }
 
@@ -288,13 +271,9 @@ table.dataTable tbody tr.shown td.details-control {
     cursor: pointer;
 }
 
-.categoria-points, .group-header {
+.categoria-points,
+.group-header {
     background: #036738 !important;
     background-color: #036738 !important;
     color: white !important;
-}
-
-.two-columns {
-    display: flex;
-    justify-content: center;
 }
