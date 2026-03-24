@@ -184,7 +184,7 @@ $(document).ready(function () {
               return data;
             }
           },
-          { data: 6, title: 'Puntos RODM' },
+          { data: 6, title: 'Categoria' },
           { data: 7, title: 'Fechas' }
         ],
         language: {

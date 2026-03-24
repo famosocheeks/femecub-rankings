@@ -351,7 +351,7 @@ $(document).ready(async function () {
           ocultaColumnas(true, typeIsAverage ? [2, 5, 7] : [2, 6, 7]);
           tableInstance.order([typeIsAverage ? 6 : 5, 'asc']).draw();
         });
-        $('.categorias-grid').append(snakeGroupBtn);
+        $('#categories-buttons').append(snakeGroupBtn);
       }
       // Skip adding individual snake buttons to the grid
       return;
@@ -384,7 +384,7 @@ $(document).ready(async function () {
       ocultaColumnas(true, typeIsAverage ? [2, 5, 7] : [2, 6, 7]);
       tableInstance.order([typeIsAverage ? 6 : 5, 'asc']).draw();
     });
-    $('.categorias-grid').append(button);
+    $('#categories-buttons').append(button);
   });
 
   allMapped = categories.reduce((acc, category) => {
