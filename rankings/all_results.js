@@ -94,7 +94,7 @@ $(document).ready(function () {
   }
 
   // ── Fetch & initialise ───────────────────────────────────
-  fetch('https://script.google.com/macros/s/AKfycbx3wvninKWYDrQVNcnJqnLMREPOm2vO8nrHyYrhCzukxgrAdfYnfStkFJkS1vCmURHvAg/exec?apiKey=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&pageSize=5000')
+  fetch('https://script.google.com/macros/s/AKfycbz3VRt7QdyxcA2_d8TAPyrS3yVpYK8mGD2vLTH26AnQXNDDCMwKdZgoPXMep46s5Udh/exec?apiKey=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&pageSize=5000')
     .then(response => response.json())
     .then(rankings => {
       const container = document.querySelector('#categories-buttons');
