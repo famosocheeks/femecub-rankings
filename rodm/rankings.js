@@ -7,7 +7,7 @@ $(document).ready(async function () {
     redirectRankings();
   });
   let tableInstance;
-  const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbxlLWeDubNS-7g0WhNdlzy9qBRiRDs_J_waPExcIIE5GGnhLcjrd-HxR9DzRkSrAnF85w/exec?apiKey=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&pageSize=2000');
+  const allDataResponse = await fetch('https://script.google.com/macros/s/AKfycbz3VRt7QdyxcA2_d8TAPyrS3yVpYK8mGD2vLTH26AnQXNDDCMwKdZgoPXMep46s5Udh/exec?apiKey=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&pageSize=5000');
   const allData = await allDataResponse.json();
 
   let processedData = {};
